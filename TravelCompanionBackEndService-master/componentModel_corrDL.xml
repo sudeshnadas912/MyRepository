@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" caption="model" country="DE" delete="0" language="de" name="model" packagename="A" uniquename="A.model" xsi:noNamespaceSchemaLocation="file://M:/PDT_1.9.0/PDT Rich Client/plugins\xsl\Catalog.xsd">
+     <ClassificationDefinition caption="CPDM Classification" name="CPDM" uniquename="A.Product.Classification.CPDM">
+     	<ClassDescription caption="Product Offering" name="PO"/>
+     	<ClassDescription caption="Product Specification" name="PS"/>
+     	<ClassDescription caption="Customer Facing Service Specification" name="CFSS"/>
+     	<ClassDescription caption="Product Usage Specification" name="PUS"/>
+     	<ClassDescription caption="Business Object" name="BO"/>
+     	<ClassDescription caption="Resource Facing Service Specification" name="RFSS"/>
+     </ClassificationDefinition>
+     <ComponentDefinition caption="Komponente" name="Komponente" selectable="yes" uniquename="system.Komponente"/>
+     <ComponentDefinition caption="Allianz Product Lab (APL)" name="Konfiguration" selectable="yes" superclassref="system.Komponente" uniquename="system.Configuration">
+          <AreaDescription caption="Start" minvalue="1" name="Start">
+               <AreaComponentDefRef componentref="A.Product.BO.GDF.Customer"/>
+          </AreaDescription>
+     </ComponentDefinition>
+     <!--PS-->
+     <ComponentDefinition caption="PS" name="PS" superclassref="system.Komponente" uniquename="A.Product.PS">
+          <ClassReference classRef="A.Product.Classification.CPDM.PS"/>
+     </ComponentDefinition>
+     <ComponentDefinition caption="Customer Solution" name="CustomerSolution" superclassref="A.Product.PS" uniquename="A.Product.PS.GDF.CustomerSolution">
+          <ClassReference classRef="A.Product.Classification.CPDM.PS"/>
+          <AreaDescription caption="has AWP Subcovers" name="hasAWPSubcovers">
+               <AreaComponentDefRef componentref="A.Product.PS.AGA.ReturnTransferCoverageSubcover"/>
+               <AreaComponentDefRef componentref="A.Product.PS.AGA.AlternativeTransferreimbursmentSubcover"/>
+               <AreaComponentDefRef componentref="A.Product.PS.AGA.SpecialLuggageTransferCoverageSubcover"/>
+               <AreaComponentDefRef componentref="A.Product.PS.AGA.RentalCarSubcover"/>
+          </AreaDescription>
+     </ComponentDefinition>
+     <ComponentDefinition caption="Mobility Solution" name="MobilitySolution" superclassref="A.Product.PS.GDF.CustomerSolution" uniquename="A.Product.PS.GDF.MobilitySolution">
+          <ClassReference classRef="A.Product.Classification.CPDM.PS"/>
+          <AreaDescription caption="has AWP Subcovers" name="hasAWPSubcovers">
+               <AreaComponentDefRef componentref="A.Product.PS.AGA.ReturnTransferCoverageSubcover"/>
+               <AreaComponentDefRef componentref="A.Product.PS.AGA.AlternativeTransferreimbursmentSubcover"/>
+               <AreaDescription caption="has return of vehicle home" maxvalue="1" name="hasReturnTransferCoverageSubcover">
+                    <AreaComponentDefRef componentref="A.Product.PS.AGA.ReturnTransferCoverageSubcover"/>
+               </AreaDescription>
+               <AreaDescription caption="has alternative travel cost reimbursement" maxvalue="1" name="hasAlternativeTransferreimbursmentSubcover">
+                    <AreaComponentDefRef componentref="A.Product.PS.AGA.AlternativeTransferreimbursmentSubcover"/>
+               </AreaDescription>
+               <AreaComponentDefRef componentref="A.Product.PS.AGA.SpecialLuggageTransferCoverageSubcover"/>
+               <AreaComponentDefRef componentref="A.Product.PS.AGA.RentalCarSubcover"/>
+               <AreaDescription caption="has transfer cost for special Luggage" maxvalue="1" name="hasSpecialLuggageTransferCoverageSubcover">
+                    <AreaComponentDefRef componentref="A.Product.PS.AGA.SpecialLuggageTransferCoverageSubcover"/>
+               </AreaDescription>
+               <AreaDescription caption="has rental car" maxvalue="1" name="hasRentalCarSubcover">
+                    <AreaComponentDefRef componentref="A.Product.PS.AGA.RentalCarSubcover"/>
+               </AreaDescription>
+          </AreaDescription>
+     </ComponentDefinition>
+     <ComponentDefinition caption="AWP Subcover" name="AWPSubcover" superclassref="A.Product.PS" uniquename="A.Product.PS.GDF.AWPSubcover">
+          <ClassReference classRef="A.Product.Classification.CPDM.PS"/>
+     </ComponentDefinition>
+     <ComponentDefinition caption="Vehicle return home coverage" name="ReturnTransferCoverageSubcover" superclassref="A.Product.PS.GDF.AWPSubcover" uniquename="A.Product.PS.AGA.ReturnTransferCoverageSubcover">
+          <ClassReference classRef="A.Product.Classification.CPDM.PS"/>
+     </ComponentDefinition>
+     <ComponentDefinition caption="Alternative travel cost reimbursement" name="AlternativeTransferreimbursmentSubcover" superclassref="A.Product.PS.GDF.AWPSubcover" uniquename="A.Product.PS.AGA.AlternativeTransferreimbursmentSubcover">
+          <ClassReference classRef="A.Product.Classification.CPDM.PS"/>
+     </ComponentDefinition>
+     <ComponentDefinition caption="Transfer cost for special luggage" name="SpecialLuggageTransferCoverageSubcover" superclassref="A.Product.PS.GDF.AWPSubcover" uniquename="A.Product.PS.AGA.SpecialLuggageTransferCoverageSubcover">
+          <ClassReference classRef="A.Product.Classification.CPDM.PS"/>
+     </ComponentDefinition>
+     <ComponentDefinition caption="Rental car coverage" name="RentalCarSubcover" superclassref="A.Product.PS.GDF.AWPSubcover" uniquename="A.Product.PS.AGA.RentalCarSubcover">
+          <ClassReference classRef="A.Product.Classification.CPDM.PS"/>
+     </ComponentDefinition>
+     <!--PO-->
+     <ComponentDefinition caption="PO" name="PO" selectable="yes" superclassref="system.Komponente" uniquename="A.Product.PO">
+          <ClassReference classRef="A.Product.Classification.CPDM.PO"/>
+     </ComponentDefinition>
+     <ComponentDefinition caption="Mobility Insurance" name="MobilityInsurance" selectable="yes" superclassref="A.Product.PO" uniquename="A.Product.PO.GDF.MobilityInsurance">
+          <ClassReference classRef="A.Product.Classification.CPDM.PO"/>
+          <Specializes unameRef="A.Product.PS.GDF.MobilitySolution"/>
+          <AreaDescription caption="has Mobility Selektors" minvalue="1" name="hasMobilitySelektors">
+               <AreaComponentDefRef componentref="A.Product.PO.GDF.MobilitySelector"/>
+          </AreaDescription>
+          <AreaDescription caption="has Mobility Modules" name="hasMobilityModules">
+               <AreaComponentDefRef componentref="A.Product.PO.GDF.MobilityModule"/>
+          </AreaDescription>
+     </ComponentDefinition>
+     <ComponentDefinition caption="Mobility Module" name="MobilityModule" selectable="yes" superclassref="A.Product.PO" uniquename="A.Product.PO.GDF.MobilityModule">
+          <ClassReference classRef="A.Product.Classification.CPDM.PO"/>
+     </ComponentDefinition>
+     <ComponentDefinition caption="Breakdown Module" name="BreakdownModule" selectable="yes" superclassref="A.Product.PO.GDF.MobilityModule" uniquename="A.Product.PO.GDF.BreakdownModule">
+          <ClassReference classRef="A.Product.Classification.CPDM.PO"/>
+			<!-- Assuming that the relevant components are defined here (and in Selektor) by subsequently list them here -->
+          <AreaDescription caption="adds vehicle return home coverage" initialize="bySystem" maxvalue="1" minvalue="1" name="addsReturnTransferCoverage" relation="collects">
+               <SelectDescription name="PlaceToFindReturnTransferCoverageSubcover" selecttype="parentComponent[A.Product.PO.GDF.MobilityInsurance]/area [hasAWPSubcovers]" sourcecomponent="A.Product.PS.GDF.MobilitySolution" sourcerelation="hasAWPSubcovers"/>
+               <AreaComponentDefRef componentref="A.Product.PS.AGA.ReturnTransferCoverageSubcover"/>
+          </AreaDescription>
+          <AreaDescription caption="adds transfer cost for special luggage" initialize="bySystem" maxvalue="1" minvalue="1" name="addsSpecialLuggageTransferCoverage" relation="collects">
+               <SelectDescription name="PlaceToFindSpecialLuggageTransferCoverageSubcover" selecttype="parentComponent[A.Product.PO.GDF.MobilityInsurance]/area [hasAWPSubcovers]" sourcecomponent="A.Product.PS.GDF.MobilitySolution" sourcerelation="hasAWPSubcovers"/>
+               <AreaComponentDefRef componentref="A.Product.PS.AGA.SpecialLuggageTransferCoverageSubcover"/>
+          </AreaDescription>
+          <MethodDescription actiontype="initialize" context="initialize" method="createIfNecessary" methodclass="com.tsystems.domain.generic.ReferenceRelation" name="createIfNecessary"/>
+          <MethodDescription actiontype="specialize" context="specialize" method="createIfNecessary" methodclass="com.tsystems.domain.generic.ReferenceRelation" name="createIfNecessary"/>
+     </ComponentDefinition>
+     <ComponentDefinition caption="DestinationBusiness Module" name="DestinationBusinessModule" selectable="yes" superclassref="A.Product.PO.GDF.MobilityModule" uniquename="A.Product.PO.GDF.DestinationBusinessModule">
+          <ClassReference classRef="A.Product.Classification.CPDM.PO"/>
+          <AreaDescription caption="adds vehicle return home coverage" initialize="bySystem" maxvalue="1" minvalue="1" name="addsReturnTransferCoverage" relation="collects">
+               <SelectDescription name="PlaceToFindReturnTransferCoverageSubcover" selecttype="parentComponent[A.Product.PO.GDF.MobilityInsurance]/area [hasAWPSubcovers]" sourcecomponent="A.Product.PS.GDF.MobilitySolution" sourcerelation="hasAWPSubcovers"/>
+               <AreaComponentDefRef componentref="A.Product.PS.AGA.ReturnTransferCoverageSubcover"/>
+          </AreaDescription>
+          <AreaDescription caption="adds alternative travel cost reimbursement" initialize="bySystem" maxvalue="1" minvalue="1" name="addsAlternativeTransferreimbursmentCoverage" relation="collects">
+               <SelectDescription name="PlaceToFindAlternativeTransferreimbursmentSubcover" selecttype="parentComponent[A.Product.PO.GDF.MobilityInsurance]/area [hasAWPSubcovers]" sourcecomponent="A.Product.PS.GDF.MobilitySolution" sourcerelation="hasAWPSubcovers"/>
+               <AreaComponentDefRef componentref="A.Product.PS.AGA.AlternativeTransferreimbursmentSubcover"/>
+          </AreaDescription>
+          <MethodDescription actiontype="initialize" context="initialize" method="createIfNecessary" methodclass="com.tsystems.domain.generic.ReferenceRelation" name="createIfNecessary"/>
+          <MethodDescription actiontype="specialize" context="specialize" method="createIfNecessary" methodclass="com.tsystems.domain.generic.ReferenceRelation" name="createIfNecessary"/>
+     </ComponentDefinition>
+     <ComponentDefinition caption="DestinationFamily Module" name="DestinationFamilyModule" selectable="yes" superclassref="A.Product.PO.GDF.MobilityModule" uniquename="A.Product.PO.GDF.DestinationFamilyModule">
+          <ClassReference classRef="A.Product.Classification.CPDM.PO"/>
+          <AreaDescription caption="adds transfer cost for special luggage" initialize="bySystem" maxvalue="1" minvalue="1" name="addsSpecialLuggageTransferCoverage" relation="collects">
+               <SelectDescription name="PlaceToFindSpecialLuggageTransferCoverageSubcover" selecttype="parentComponent[A.Product.PO.GDF.MobilityInsurance]/area [hasAWPSubcovers]" sourcecomponent="A.Product.PS.GDF.MobilitySolution" sourcerelation="hasAWPSubcovers"/>
+               <AreaComponentDefRef componentref="A.Product.PS.AGA.SpecialLuggageTransferCoverageSubcover"/>
+          </AreaDescription>
+          <AreaDescription caption="adds rental car" initialize="bySystem" maxvalue="1" minvalue="1" name="addsRentalCar" relation="collects">
+			   <SelectDescription name="PlaceToFindRentalCarSubcover" selecttype="parentComponent[A.Product.PO.GDF.MobilityInsurance]/area [hasAWPSubcovers]" sourcecomponent="A.Product.PS.GDF.MobilitySolution" sourcerelation="hasAWPSubcovers"/>
+               <AreaComponentDefRef componentref="A.Product.PS.AGA.RentalCarSubcover"/>
+          </AreaDescription>
+          <MethodDescription actiontype="initialize" context="initialize" method="createIfNecessary" methodclass="com.tsystems.domain.generic.ReferenceRelation" name="createIfNecessary"/>
+          <MethodDescription actiontype="specialize" context="specialize" method="createIfNecessary" methodclass="com.tsystems.domain.generic.ReferenceRelation" name="createIfNecessary"/>
+     </ComponentDefinition>
+     <ComponentDefinition caption="TrainFlight Module" name="TrainFlightModule" selectable="yes" superclassref="A.Product.PO.GDF.MobilityModule" uniquename="A.Product.PO.GDF.TrainFlightModule">
+          <ClassReference classRef="A.Product.Classification.CPDM.PO"/>
+          <AreaDescription caption="adds alternative travel cost reimbursement" initialize="bySystem" maxvalue="1" minvalue="1" name="addsAlternativeTransferreimbursmentCoverage" relation="collects">
+               <SelectDescription name="PlaceToFindAlternativeTransferreimbursmentSubcover" selecttype="parentComponent[A.Product.PO.GDF.MobilityInsurance]/area [hasAWPSubcovers]" sourcecomponent="A.Product.PS.GDF.MobilitySolution" sourcerelation="hasAWPSubcovers"/>
+               <AreaComponentDefRef componentref="A.Product.PS.AGA.AlternativeTransferreimbursmentSubcover"/>
+          </AreaDescription>
+          <MethodDescription actiontype="initialize" context="initialize" method="createIfNecessary" methodclass="com.tsystems.domain.generic.ReferenceRelation" name="createIfNecessary"/>
+          <MethodDescription actiontype="specialize" context="specialize" method="createIfNecessary" methodclass="com.tsystems.domain.generic.ReferenceRelation" name="createIfNecessary"/>
+     </ComponentDefinition>
+     <ComponentDefinition caption="Mobility Selector" name="MobilitySelector" selectable="yes" superclassref="A.Product.PO" uniquename="A.Product.PO.GDF.MobilitySelector">
+          <ClassReference classRef="A.Product.Classification.CPDM.PO"/>
+          <AreaDescription caption="has Mobility" maxvalue="1" minvalue="1" name="hasMobility">
+               <AreaComponentDefRef componentref="A.Product.BO.GDF.Mobility"/>
+          </AreaDescription>
+          <AreaDescription caption="has Mobility Modules" name="hasMobilityModules">
+               <AreaComponentDefRef componentref="A.Product.PO.GDF.MobilityModule"/>
+          </AreaDescription>
+     </ComponentDefinition>
+     <ComponentDefinition caption="Breakdown Selektor" name="BreakdownSelektor" selectable="yes" superclassref="A.Product.PO.GDF.MobilitySelector" uniquename="A.Product.PO.GDF.BreakdownSelektor">
+          <ClassReference classRef="A.Product.Classification.CPDM.PO"/>
+          <MethodDescription actiontype="initialize" context="initialize" method="createIfNecessary" methodclass="com.tsystems.domain.generic.ReferenceRelation" name="createIfNecessary"/>
+          <MethodDescription actiontype="specialize" context="specialize" method="createIfNecessary" methodclass="com.tsystems.domain.generic.ReferenceRelation" name="createIfNecessary"/>
+          <AreaDescription caption="has Mobility" maxvalue="1" minvalue="1" name="hasMobility">
+               <AreaComponentDefRef componentref="A.Product.BO.GDF.Breakdown"/>
+          </AreaDescription>
+			<!-- Assuming that multiple options / components can be referenced by putting them subsequently into the Selektor -->
+          <AreaDescription caption="adds vehicle return home coverage" initialize="bySystem" maxvalue="1" minvalue="1" name="addsReturnTransferCoverage" relation="collects">
+               <AreaComponentDefRef componentref="A.Product.PS.AGA.ReturnTransferCoverageSubcover"/>
+               <SelectDescription name="PlaceToFindReturnTransferCoverageSubcover" selecttype="parentComponent[A.Product.PO.GDF.MobilityInsurance]/area [hasAWPSubcovers]" sourcecomponent="A.Product.PS.GDF.MobilitySolution" sourcerelation="hasAWPSubcovers"/>
+          </AreaDescription>
+          <AreaDescription caption="adds transfer cost for special luggage" initialize="bySystem" maxvalue="1" minvalue="1" name="addsSpecialLuggageTransferCoverage" relation="collects">
+               <AreaComponentDefRef componentref="A.Product.PS.AGA.SpecialLuggageTransferCoverageSubcover"/>
+               <SelectDescription name="PlaceToFindSpecialLuggageTransferCoverageSubcover" selecttype="parentComponent[A.Product.PO.GDF.MobilityInsurance]/area [hasAWPSubcovers]" sourcecomponent="A.Product.PS.GDF.MobilitySolution" sourcerelation="hasAWPSubcovers"/>
+          </AreaDescription>
+          <AreaDescription caption="has Mobility Modules" maxvalue="1" name="hasMobilityModules">
+               <AreaComponentDefRef componentref="A.Product.PO.GDF.BreakdownModule"/>
+          </AreaDescription>
+     </ComponentDefinition>
+     <ComponentDefinition caption="DestinationBusiness Selektor" name="DestinationBusinessSelektor" selectable="yes" superclassref="A.Product.PO.GDF.MobilitySelector" uniquename="A.Product.PO.GDF.DestinationBusinessSelektor">
+          <ClassReference classRef="A.Product.Classification.CPDM.PO"/>
+          <MethodDescription actiontype="initialize" context="initialize" method="createIfNecessary" methodclass="com.tsystems.domain.generic.ReferenceRelation" name="createIfNecessary"/>
+          <MethodDescription actiontype="specialize" context="specialize" method="createIfNecessary" methodclass="com.tsystems.domain.generic.ReferenceRelation" name="createIfNecessary"/>
+          <AreaDescription caption="has Mobility" maxvalue="1" minvalue="1" name="hasMobility">
+               <AreaComponentDefRef componentref="A.Product.BO.GDF.DestinationBusiness"/>
+          </AreaDescription>
+          <AreaDescription caption="adds vehicle return home coverage" initialize="bySystem" maxvalue="1" minvalue="1" name="addsReturnTransferCoverage" relation="collects">
+               <AreaComponentDefRef componentref="A.Product.PS.AGA.ReturnTransferCoverageSubcover"/>
+               <SelectDescription name="PlaceToFindReturnTransferCoverageSubcover" selecttype="parentComponent[A.Product.PO.GDF.MobilityInsurance]/area [hasAWPSubcovers]" sourcecomponent="A.Product.PS.GDF.MobilitySolution" sourcerelation="hasAWPSubcovers"/>
+          </AreaDescription>
+          <AreaDescription caption="adds alternative travel cost reimbursement" initialize="bySystem" maxvalue="1" minvalue="1" name="addsAlternativeTransferreimbursment" relation="collects">
+               <AreaComponentDefRef componentref="A.Product.PS.AGA.AlternativeTransferreimbursmentSubcover"/>
+               <SelectDescription name="PlaceToFindAlternativeTransferreimbursmentSubcover" selecttype="parentComponent[A.Product.PO.GDF.MobilityInsurance]/area [hasAWPSubcovers]" sourcecomponent="A.Product.PS.GDF.MobilitySolution" sourcerelation="hasAWPSubcovers"/>
+          </AreaDescription>
+          <AreaDescription caption="has Mobility Modules" maxvalue="1" name="hasMobilityModules">
+               <AreaComponentDefRef componentref="A.Product.PO.GDF.DestinationBusinessModule"/>
+          </AreaDescription>
+     </ComponentDefinition>
+     <ComponentDefinition caption="DestinationFamily Selektor" name="DestinationFamilySelektor" selectable="yes" superclassref="A.Product.PO.GDF.MobilitySelector" uniquename="A.Product.PO.GDF.DestinationFamilySelektor">
+          <ClassReference classRef="A.Product.Classification.CPDM.PO"/>
+          <MethodDescription actiontype="initialize" context="initialize" method="createIfNecessary" methodclass="com.tsystems.domain.generic.ReferenceRelation" name="createIfNecessary"/>
+          <MethodDescription actiontype="specialize" context="specialize" method="createIfNecessary" methodclass="com.tsystems.domain.generic.ReferenceRelation" name="createIfNecessary"/>
+          <AreaDescription caption="has Mobility" maxvalue="1" minvalue="1" name="hasMobility">
+               <AreaComponentDefRef componentref="A.Product.BO.GDF.DestinationFamily"/>
+          </AreaDescription>
+			<!-- Assuming that all Selektor instances get 'their' selectable links here (and in modules) -->
+          <AreaDescription caption="adds transfer cost for special luggage" initialize="bySystem" maxvalue="1" minvalue="1" name="addsSpecialLuggageTransferCoverage" relation="collects">
+               <AreaComponentDefRef componentref="A.Product.PS.AGA.SpecialLuggageTransferCoverageSubcover"/>
+               <SelectDescription name="PlaceToFindSpecialLuggageTransferCoverageSubcover" selecttype="parentComponent[A.Product.PO.GDF.MobilityInsurance]/area [hasAWPSubcovers]" sourcecomponent="A.Product.PS.GDF.MobilitySolution" sourcerelation="hasAWPSubcovers"/>
+          </AreaDescription>
+          <AreaDescription caption="adds rental car" initialize="bySystem" maxvalue="1" minvalue="1" name="addsRentalCar" relation="collects">
+               <AreaComponentDefRef componentref="A.Product.PS.AGA.RentalCarSubcover"/>
+               <SelectDescription name="PlaceToFind RentalCarSubcover" selecttype="parentComponent[A.Product.PO.GDF.MobilityInsurance]/area [hasAWPSubcovers]" sourcecomponent="A.Product.PS.GDF.MobilitySolution" sourcerelation="hasAWPSubcovers"/>
+          </AreaDescription>
+          <AreaDescription caption="has Mobility" maxvalue="1" minvalue="1" name="hasMobility">
+               <AreaComponentDefRef componentref="A.Product.PO.GDF.DestinationFamilyModule"/>
+          </AreaDescription>
+     </ComponentDefinition>
+     <ComponentDefinition caption="TrainFlight Selektor" name="TrainFlightSelektor" selectable="yes" superclassref="A.Product.PO.GDF.MobilitySelector" uniquename="A.Product.PO.GDF.TrainFlightSelektor">
+          <ClassReference classRef="A.Product.Classification.CPDM.PO"/>
+          <MethodDescription actiontype="initialize" context="initialize" method="createIfNecessary" methodclass="com.tsystems.domain.generic.ReferenceRelation" name="createIfNecessary"/>
+          <MethodDescription actiontype="specialize" context="specialize" method="createIfNecessary" methodclass="com.tsystems.domain.generic.ReferenceRelation" name="createIfNecessary"/>
+          <AreaDescription caption="has Mobility" maxvalue="1" minvalue="1" name="hasMobility">
+               <AreaComponentDefRef componentref="A.Product.BO.GDF.TrainFlight"/>
+          </AreaDescription>
+          <AreaDescription caption="adds alternative travel cost reimbursement" initialize="bySystem" maxvalue="1" minvalue="1" name="addsAlternativeTransferreimbursment" relation="collects">
+               <AreaComponentDefRef componentref="A.Product.PS.AGA.AlternativeTransferreimbursmentSubcover"/>
+               <SelectDescription name="PlaceToFindAlternativeTransferreimbursmentSubcover" selecttype="parentComponent[A.Product.PO.GDF.MobilityInsurance]/area [hasAWPSubcovers]" sourcecomponent="A.Product.PS.GDF.MobilitySolution" sourcerelation="hasAWPSubcovers"/>
+          </AreaDescription>
+          <AreaDescription caption="has Mobility" maxvalue="1" minvalue="1" name="hasMobility">
+               <AreaComponentDefRef componentref="A.Product.PO.GDF.TrainFlightModule"/>
+          </AreaDescription>
+     </ComponentDefinition>
+     <!--BO-->
+     <ComponentDefinition caption="BO" name="BO" selectable="yes" superclassref="system.Komponente" uniquename="A.Product.BO">
+          <ClassReference classRef="A.Product.Classification.CPDM.BO"/>
+     </ComponentDefinition>
+     <ComponentDefinition caption="Mobility" name="Mobility" selectable="yes" superclassref="A.Product.BO" uniquename="A.Product.BO.GDF.Mobility">
+          <ClassReference classRef="A.Product.Classification.CPDM.BO"/>
+     </ComponentDefinition>
+     <ComponentDefinition caption="Breakdown" name="Breakdown" selectable="yes" superclassref="A.Product.BO.GDF.Mobility" uniquename="A.Product.BO.GDF.Breakdown">
+          <ClassReference classRef="A.Product.Classification.CPDM.BO"/>
+     </ComponentDefinition>
+     <ComponentDefinition caption="DestinationBusiness" name="DestinationBusiness" selectable="yes" superclassref="A.Product.BO.GDF.Mobility" uniquename="A.Product.BO.GDF.DestinationBusiness">
+          <ClassReference classRef="A.Product.Classification.CPDM.BO"/>
+     </ComponentDefinition>
+     <ComponentDefinition caption="DestinationFamily" name="DestinationFamily" selectable="yes" superclassref="A.Product.BO.GDF.Mobility" uniquename="A.Product.BO.GDF.DestinationFamily">
+          <ClassReference classRef="A.Product.Classification.CPDM.BO"/>
+     </ComponentDefinition>
+     <ComponentDefinition caption="TrainFlight" name="TrainFlight" selectable="yes" superclassref="A.Product.BO.GDF.Mobility" uniquename="A.Product.BO.GDF.TrainFlight">
+          <ClassReference classRef="A.Product.Classification.CPDM.BO"/>
+     </ComponentDefinition>
+     <ComponentDefinition caption="Customer" name="Customer" selectable="yes" superclassref="A.Product.BO" uniquename="A.Product.BO.GDF.Customer">
+          <ClassReference classRef="A.Product.Classification.CPDM.BO"/>
+          <AreaDescription caption="has Mobility Insurance" maxvalue="1" minvalue="1" name="hasMobilityInsurance">
+               <AreaComponentDefRef componentref="A.Product.PO.GDF.MobilityInsurance"/>
+          </AreaDescription>
+     </ComponentDefinition>
+</catalog>

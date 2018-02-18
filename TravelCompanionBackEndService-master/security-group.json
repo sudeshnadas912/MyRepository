@@ -1,0 +1,9 @@
+[
+ {
+    "protocol": "tcp",
+    "destination": "0.0.0.0/0",
+    "ports": "80,443",
+    "log": true,
+    "description": "Allow http and https traffic from ZoneA"
+  }
+]

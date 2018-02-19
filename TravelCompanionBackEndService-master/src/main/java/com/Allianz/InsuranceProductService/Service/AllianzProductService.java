@@ -41,32 +41,28 @@ import com.Allianz.InsuranceProductService.cisl.Model.contractPartiesSearch;
 import com.Allianz.InsuranceProductService.cisl.Model.contractQuery;
 import com.Allianz.InsuranceProductService.util.DataMocker;
 import com.Allianz.InsuranceProductService.util.MakeServiceCalls;
-import com.Allianz.InsuranceProductService.util.ProductServiceUtil;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
 @Service
 public class AllianzProductService {
-	@Autowired
-	ProductServiceUtil productServiceUtil;
+	
 
 	@Autowired
 	private MakeServiceCalls makeServiceCalls;
 
 	@Autowired
-	ProductInfoVO productInfoVO;
+	private ProductInfoVO productInfoVO;
+
+	
+	@Autowired
+	private CislApiService cislApiService;
 
 	@Autowired
-	PackageinfoVO packageinfoVO;
+	private DataMocker dataMocker;
 
 	@Autowired
-	CislApiService cislApiService;
-
-	@Autowired
-	DataMocker dataMocker;
-
-	@Autowired
-	APLApiService aplService;
+	private APLApiService aplService;
 
 	private static final Logger logger = Logger.getLogger(TravelCompanionBackendController.class.getName());
 

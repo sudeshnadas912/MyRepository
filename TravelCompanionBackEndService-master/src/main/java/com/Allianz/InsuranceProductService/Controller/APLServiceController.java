@@ -40,7 +40,7 @@ public class APLServiceController {
 	@Autowired
 	private AplService aplService;
 
-	String passionUrl = null;
+	
 	// APL implementation (Start)
 
 	// To fetch all the Package details

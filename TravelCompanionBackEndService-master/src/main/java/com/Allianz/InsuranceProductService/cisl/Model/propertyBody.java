@@ -28,10 +28,10 @@ public class propertyBody {
 		this.eClass = eClass;
 	}
 	public String[] getOwners() {
-		return owners;
+		return owners.clone();
 	}
 	public void setOwners(String[] owners) {
-		this.owners = owners;
+		this.owners = owners.clone();
 	}
 	public characteristics getCharacteristics() {
 		return characteristics;

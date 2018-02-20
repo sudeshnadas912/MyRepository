@@ -47,10 +47,10 @@ public class policyBody {
 		this.externalPolicyNumber = externalPolicyNumber;
 	}
 	public coverages[] getCoverages() {
-		return coverages;
+		return coverages.clone();
 	}
 	public void setCoverages(coverages[] coverages) {
-		this.coverages = coverages;
+		this.coverages = coverages.clone();
 	}
 	
 

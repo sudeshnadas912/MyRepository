@@ -33,7 +33,7 @@ public class household {
 		this.houseHoldRole=houseHoldRole;
 		this.numberOfChildren=numberOfChildren;
 		this.numberOfVehicles=numberOfVehicles;
-		this.members=members;
+		this.members=members.clone();
 		}
 	public String getSelf() {
 		return self;
@@ -72,10 +72,10 @@ public class household {
 		this.numberOfVehicles = numberOfVehicles;
 	}
 	public String[] getMembers() {
-		return members;
+		return members.clone();
 	}
 	public void setMembers(String[] members) {
-		this.members = members;
+		this.members = members.clone();
 	}
 	
 	

@@ -61,10 +61,10 @@ public class result {
 		this.fields = fields;
 	}
 	public Area[] getAreas() {
-		return areas;
+		return areas.clone();
 	}
 	public void setAreas(Area[] areas) {
-		this.areas = areas;
+		this.areas = areas.clone();
 	}
 	
 }

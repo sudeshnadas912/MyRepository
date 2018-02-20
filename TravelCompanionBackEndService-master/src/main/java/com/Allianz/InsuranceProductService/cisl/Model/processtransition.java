@@ -26,10 +26,10 @@ public class processtransition {
 		this.eClass = eClass;
 	}
 	public String[] getPolicies() {
-		return policies;
+		return policies.clone();
 	}
 	public void setPolicies(String[] policies) {
-		this.policies = policies;
+		this.policies = policies.clone();
 	}
 	
 }

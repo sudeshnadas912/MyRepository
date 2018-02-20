@@ -15,6 +15,8 @@
  ******************************************************************************/
 package com.Allianz.InsuranceProductService.cisl.Model;
 
+import static java.util.stream.Collectors.toList;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -91,11 +93,11 @@ public class Product implements Serializable {
 	}
 
 	public List<Area> getAreaList() {
-		return areaList;
+		return areaList.stream().collect(toList());
 	}
 
 	public void setAreaList(List<Area> areaList) {
-		this.areaList = areaList;
+		this.areaList = areaList.stream().collect(toList());
 	}
 
 }

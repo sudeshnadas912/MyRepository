@@ -1,16 +1,14 @@
 package com.Allianz.InsuranceProductService.Service;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.ws.rs.HttpMethod;
 import javax.ws.rs.client.Client;
-import javax.ws.rs.client.Invocation.Builder;
 import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.json.JSONException;
@@ -26,6 +24,8 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import com.Allianz.InsuranceProductService.cisl.Model.Area;
+import com.Allianz.InsuranceProductService.cisl.Model.CompRefs;
 import com.Allianz.InsuranceProductService.cisl.Model.Passion;
 import com.Allianz.InsuranceProductService.cisl.Model.Product;
 import com.Allianz.InsuranceProductService.util.MakeServiceCalls;
@@ -103,6 +103,20 @@ public class AplServiceTest {
 		mockProduct.setParentId("parentId");
 		mockProduct.setPassionSelektorId("passionSelektorId");
 		mockProduct.setProdref("prodref");
+		Area area = new Area();
+		area.setCaption("caption");
+		area.setName("gameSelektors");
+
+		List<CompRefs> compRefs = new ArrayList<>();
+		CompRefs compRef = new CompRefs();
+		compRef.setName("testSelector");
+		compRef.setRef("ref");
+		compRefs.add(compRef);
+
+		area.setCompRefsList(compRefs);
+		List<Area> arealist = new ArrayList<>();
+		arealist.add(area);
+		mockProduct.setAreaList(arealist);
 
 		Mockito.when(this.mockResponse.getStatus()).thenReturn(200);
 
